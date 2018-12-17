@@ -5,11 +5,11 @@ import { Provider, connect } from 'react-redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
-import reducer from './src/reducers/reducer';
-import RepoList from './src/views/repolist';
+import reducer from './reducers/reducer';
+import RepoList from './views/repolist';
 
 const client = axios.create({
-  baseURL: 'https://api.github.com',
+  baseURL: 'https://facebook.github.io',
   responseType: 'json'
 });
 

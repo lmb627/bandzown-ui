@@ -10,7 +10,7 @@ export class RepoList extends Component {
   }
   renderItem = ({ item }) => (
     <View style={styles.item}>
-      <Text>{item.name}</Text>
+      <Text>{item.title}</Text>
     </View>
   );
   render() {
@@ -37,10 +37,16 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-  let storedRepositories = state.repos.map(repo => ({ key: repo.id, ...repo }));
-  return {
-    repos: storedRepositories
-  };
+
+
+  let repositories = state.repos.movies
+  if(repositories) {
+    let storedRepositories = repositories.map(repo => ({ key: repo.id, ...repo }));
+    return {
+      repos: storedRepositories
+    };
+  } else { return [];}
+
 };
 
 const mapDispatchToProps = {
