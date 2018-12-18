@@ -1,36 +1,13 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider, connect } from 'react-redux';
-import axios from 'axios';
-import axiosMiddleware from 'redux-axios-middleware';
+import React from "react";
+import { View, Text } from "react-native";
+import { createStackNavigator, createAppContainer } from "react-navigation";
 
-import reducer from './reducers/reducer';
-import RepoList from './views/repolist';
+import { Home } from "./views/home";
+import { Bands } from "./views/bands";
 
-const client = axios.create({
-  baseURL: 'https://facebook.github.io',
-  responseType: 'json'
+const AppNavigator = createStackNavigator({
+  HomeView: Home,
+  BandsView: Bands
 });
 
-const store = createStore(reducer, applyMiddleware(axiosMiddleware(client)));
-
-export default class App extends Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <View style={styles.container}>
-          <RepoList />
-        </View>
-      </Provider>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 50
-  }
-});
+export default createAppContainer(AppNavigator);
