@@ -1,4 +1,4 @@
-package com.helloredux3;
+package com.bandzown;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "helloredux3";
+        return "bandzown";
     }
 }
