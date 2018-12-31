@@ -6,6 +6,9 @@ This is the UI for the Bandzown app.
 
 It uses the bandzown server found here:
 
+* https://github.com/lmb627/bandzown
+* https://bandzown.herokuapp.com/bands
+
 ## Pre-requisites
 
 ```
