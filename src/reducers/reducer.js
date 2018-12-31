@@ -2,7 +2,8 @@ export const GET_REPOS = 'my-awesome-app/repos/LOAD';
 export const GET_REPOS_SUCCESS = 'my-awesome-app/repos/LOAD_SUCCESS';
 export const GET_REPOS_FAIL = 'my-awesome-app/repos/LOAD_FAIL';
 
-export default function reducer(state = { repos: {movies: []} }, action) {
+// export default function reducer(state = { repos: {movies: []} }, action) {
+export default function reducer(state = { bands: [] }, action) {
   switch (action.type) {
     case GET_REPOS:
       return { ...state, loading: true };
@@ -12,19 +13,19 @@ export default function reducer(state = { repos: {movies: []} }, action) {
       return {
         ...state,
         loading: false,
-        error: 'Error while fetching repositories'
+        error: 'Error while fetching bands'
       };
     default:
       return state;
   }
 }
 
-export function listRepos(user) {
+export function listBands(user) {
   return {
-    type: GET_REPOS,
+    type: GET_BANDS,
     payload: {
       request: {
-        url: `/react-native/movies.json`
+        url: `/bands`
       }
     }
   };

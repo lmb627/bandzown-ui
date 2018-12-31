@@ -9,7 +9,7 @@ import reducer from '../reducers/reducer';
 import RepoList from '../components/repolist';
 
 const client = axios.create({
-  baseURL: 'https://facebook.github.io',
+  baseURL: 'https://bandzown.heroku.com',
   responseType: 'json'
 });
 
