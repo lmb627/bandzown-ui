@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+
 import { NewBandForm } from '../components/newbandform';
+
+
+const imaginaryBand = {
+  name: "no_name",
+  genre: "no_genre",
+  number_of_members: 0
+}
+
 
 export class NewBand extends Component {
   static navigationOptions = {
@@ -9,20 +18,18 @@ export class NewBand extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-
+      <View styles={styles.container}>
+        <NewBandForm />
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  viewContent: {
+  container: {
     flex: 1,
+    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center"
   },
-  viewTitle: {
-    fontSize: 30
-  }
 });

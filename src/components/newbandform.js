@@ -1,23 +1,43 @@
-import React from 'react';
-import { Formik } from 'formik';
-import { Button, View } from 'react-native'; 
+import React, { Component } from 'react';
+import { Button, View } from 'react-native';
+import { Field, Formik } from 'formik';
 
-const NewBandForm = () => (
-  <Formik
-    onSubmit={() => {
-      console.log('SUBMITTED');
-    }}
-    render={({
-      handleSubmit,
-    }) => (
-      <View>
-        <Button
-          title="Submit Hello"
-          onPress={handleSubmit}
+import FKTextInput from './fktextinput';
+
+
+export class NewBandForm extends Component {
+
+  render() {
+    return (
+
+      <Formik
+        onSubmit={({ firstName, lastName }) => {
+          console.log(`firstName: ${firstName}`);
+          console.log(`lastName: ${lastName}`);
+        }}
+        render={({
+          handleSubmit,
+        }) => (
+          <View>
+            <Field
+              component={FKTextInput}
+              name="firstName"
+            />
+            <Field
+              component={FKTextInput}
+              name="lastName"
+            />
+            <Button
+              title="Submit Refactor"
+              onPress={handleSubmit}
+            />
+          </View>
+        )}
         />
-      </View>
-    )}
-  />
-);
 
-export default NewBandForm;
+
+
+    );
+  }
+
+}
