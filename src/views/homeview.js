@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyleSheet, SafeAreaView, StatusBar, View, Text, Button } from "react-native";
 
-export class Home extends Component {
+export class HomeView extends Component {
   static navigationOptions = {
     title: 'Home',
   };
@@ -17,7 +17,7 @@ export class Home extends Component {
           <Text style = {styles.viewTitle}>Home Screen</Text>
           <Button
             title="Go to Bands"
-            onPress={() => this.props.navigation.navigate('BandsView')}
+            onPress={() => this.props.navigation.navigate('Bands')}
           />
         </View>
       </SafeAreaView>

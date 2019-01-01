@@ -11,7 +11,7 @@ const imaginaryBand = {
 }
 
 
-export class NewBand extends Component {
+export class NewBandView extends Component {
   static navigationOptions = {
     title: 'New Band'
   };

@@ -2,15 +2,17 @@ import React from "react";
 import { View, Text } from "react-native";
 import { createStackNavigator, createAppContainer } from "react-navigation";
 
-import { Home } from "./views/home";
-import { Bands } from "./views/bands";
-import { NewBand } from "./views/newband";
+import { HomeView } from "./views/homeview";
+import { BandsView } from "./views/bandsview";
+import { NewBandView } from "./views/newbandview";
+import { BandDetailsView } from "./views/banddetailsview";
 
 const AppNavigator = createStackNavigator(
   {
-    HomeView: Home,
-    BandsView: Bands,
-    NewBandView: NewBand
+    Home: HomeView,
+    Bands: BandsView,
+    NewBand: NewBandView,
+    BandDetails: BandDetailsView
   },
   {
     defaultNavigationOptions:

@@ -16,14 +16,14 @@ const client = axios.create({
 
 const store = createStore(bandsReducer, applyMiddleware(axiosMiddleware(client)));
 
-export class Bands extends Component {
+export class BandsView extends Component {
 
   static navigationOptions = ({ navigation }) => {
       return {
         headerTitle: "Bands",
         headerRight: (
           <Button
-            onPress={() => navigation.navigate('NewBandView')}
+            onPress={() => navigation.navigate('NewBand')}
             title="Add"
             color="#fff"
           />
