@@ -3,7 +3,7 @@ export const GET_BANDS_SUCCESS = 'bandzown.herokuapp.com/bands/LOAD_SUCCESS';
 export const GET_BANDS_FAIL = 'bandzown.herokuapp.com/bands/LOAD_FAIL';
 
 // export default function reducer(state = { repos: {movies: []} }, action) {
-export default function reducer(state = { bands: [] }, action) {
+export default function bandsReducer(state = { bands: [] }, action) {
   console.log("action type: %s", action.type);
   switch (action.type) {
     case GET_BANDS:

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
-import reducer from '../reducers/reducer';
+import bandsReducer from '../reducers/bands';
 import BandsList from '../components/bandslist';
 
 const client = axios.create({
@@ -13,24 +13,37 @@ const client = axios.create({
   responseType: 'json'
 });
 
-const store = createStore(reducer, applyMiddleware(axiosMiddleware(client)));
+const store = createStore(bandsReducer, applyMiddleware(axiosMiddleware(client)));
 
 export class Bands extends Component {
+  static navigationOptions = {
+    title: 'Bands',
+  };
+
   render() {
     return (
-      <Provider store={store}>
-        <View style={styles.container}>
-          <BandsList />
-        </View>
-      </Provider>
+      <SafeAreaView style = {styles.safeContent}>
+        <StatusBar
+          barStyle="light-content"
+
+        />
+        <Provider store={store}>
+          <View style={styles.container}>
+            <BandsList />
+          </View>
+        </Provider>
+      </SafeAreaView>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  safeContent: {
+    flex: 1
+  },
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    marginTop: 50
+    alignItems: "stretch",
+    backgroundColor: '#fff'
   }
 });

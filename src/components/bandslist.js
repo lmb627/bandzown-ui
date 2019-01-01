@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 
-import { listBands } from '../reducers/reducer';
+import { listBands } from '../reducers/bands';
 
 export class BandsList extends Component {
   componentDidMount() {
@@ -15,9 +15,9 @@ export class BandsList extends Component {
   );
   render() {
     return (
-      <View>
+      <View styles = {styles.container}>
         <FlatList
-          styles={styles.container}
+          styles={styles.flatList}
           data={this.props.bands}
           renderItem={this.renderItem}
         />
@@ -26,11 +26,14 @@ export class BandsList extends Component {
   }
 }
 
-
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    alignItems: "stretch"
+  },
+  flatList: {
+    flex: 1,
+    alignItems: "stretch"
   },
   item: {
     padding: 16,
