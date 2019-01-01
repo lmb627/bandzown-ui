@@ -6,10 +6,10 @@ import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
 import reducer from '../reducers/reducer';
-import RepoList from '../components/repolist';
+import BandsList from '../components/bandslist';
 
 const client = axios.create({
-  baseURL: 'https://bandzown.heroku.com',
+  baseURL: 'https://bandzown.herokuapp.com',
   responseType: 'json'
 });
 
@@ -20,7 +20,7 @@ export class Bands extends Component {
     return (
       <Provider store={store}>
         <View style={styles.container}>
-          <RepoList />
+          <BandsList />
         </View>
       </Provider>
     );

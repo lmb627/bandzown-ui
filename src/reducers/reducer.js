@@ -1,15 +1,16 @@
-export const GET_REPOS = 'my-awesome-app/repos/LOAD';
-export const GET_REPOS_SUCCESS = 'my-awesome-app/repos/LOAD_SUCCESS';
-export const GET_REPOS_FAIL = 'my-awesome-app/repos/LOAD_FAIL';
+export const GET_BANDS = 'bandzown.herokuapp.com/bands/LOAD';
+export const GET_BANDS_SUCCESS = 'bandzown.herokuapp.com/bands/LOAD_SUCCESS';
+export const GET_BANDS_FAIL = 'bandzown.herokuapp.com/bands/LOAD_FAIL';
 
 // export default function reducer(state = { repos: {movies: []} }, action) {
 export default function reducer(state = { bands: [] }, action) {
+  console.log("action type: %s", action.type);
   switch (action.type) {
-    case GET_REPOS:
+    case GET_BANDS:
       return { ...state, loading: true };
-    case GET_REPOS_SUCCESS:
-      return { ...state, loading: false, repos: action.payload.data };
-    case GET_REPOS_FAIL:
+    case GET_BANDS_SUCCESS:
+      return { ...state, loading: false, bands: action.payload.data };
+    case GET_BANDS_FAIL:
       return {
         ...state,
         loading: false,

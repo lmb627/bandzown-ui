@@ -14,16 +14,19 @@ export class BandsList extends Component {
     </View>
   );
   render() {
-    const { bands } = this.props;
     return (
-      <FlatList
-        styles={styles.container}
-        data={bands}
-        renderItem={this.renderItem}
-      />
+      <View>
+        <FlatList
+          styles={styles.container}
+          data={this.props.bands}
+          renderItem={this.renderItem}
+        />
+      </View>
     );
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -39,11 +42,19 @@ const styles = StyleSheet.create({
 const mapStateToProps = state => {
   let bands = state.bands
   if(bands) {
-    let storedBands = bands.map(band => ({ key: band.id, ...band }));
+
+    console.log("there are %d bands", bands.length)
+    bands.forEach(function(x){
+      console.log("id: %s; name: %s", x._id, x.name);
+    });
+    let storedBands = bands.map(band => ({ key: band._id, ...band }));
     return {
-      repos: storedBands
+      bands: storedBands
     };
-  } else { return [];}
+  } else {
+    console.log("no bands");
+    return [];
+  }
 
 };
 
