@@ -4,11 +4,13 @@ import { createStackNavigator, createAppContainer } from "react-navigation";
 
 import { Home } from "./views/home";
 import { Bands } from "./views/bands";
+import { NewBand } from "./views/newband";
 
 const AppNavigator = createStackNavigator(
   {
     HomeView: Home,
-    BandsView: Bands
+    BandsView: Bands,
+    NewBandView: NewBand
   },
   {
     defaultNavigationOptions:

@@ -1,15 +1,16 @@
+import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
-import HelloForm from './components/HelloForm';
+import { NewBandForm } from '../components/newbandform';
 
-export default class App extends React.Component {
+export class NewBand extends Component {
   static navigationOptions = {
-    title: 'New Band',
+    title: 'New Band'
   };
 
   render() {
     return (
       <View style={styles.container}>
-        <HelloForm />
+
       </View>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, Text, View, Button } from 'react-native';
+
 import { createStore, applyMiddleware } from 'redux';
 import { Provider, connect } from 'react-redux';
 import axios from 'axios';
@@ -16,9 +17,20 @@ const client = axios.create({
 const store = createStore(bandsReducer, applyMiddleware(axiosMiddleware(client)));
 
 export class Bands extends Component {
-  static navigationOptions = {
-    title: 'Bands',
-  };
+
+  static navigationOptions = ({ navigation }) => {
+      return {
+        headerTitle: "Bands",
+        headerRight: (
+          <Button
+            onPress={() => navigation.navigate('NewBandView')}
+            title="Add"
+            color="#fff"
+          />
+        ),
+      };
+    };
+
 
   render() {
     return (
