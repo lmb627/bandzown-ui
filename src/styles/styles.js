@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10
   },
+  rootError: {
+    color: 'red',
+    marginLeft: 10,
+  },
 });
 
 export default styles;
