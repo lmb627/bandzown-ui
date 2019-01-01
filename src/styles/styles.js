@@ -11,6 +11,14 @@ const styles = StyleSheet.create({
     color: 'red',
     marginLeft: 10,
   },
+  rootFailed: {
+    color: 'red',
+    textAlign: 'center',
+  },
+  rootSucceeded: {
+    color: 'green',
+    textAlign: 'center',
+  },
 });
 
 export default styles;

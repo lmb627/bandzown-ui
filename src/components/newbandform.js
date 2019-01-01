@@ -8,6 +8,12 @@ import FKTextInput from './fktextinput';
 
 export class NewBandForm extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: {}
+    }
+  }
   static SignupSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, 'Too Short!')
@@ -23,38 +29,50 @@ export class NewBandForm extends Component {
     return (
 
       <Formik
-        initialValues={{
+        initialValues = {{
                 firstName: '',
                 lastName: '',
               }}
 
-        onSubmit={({ firstName, lastName }) => {
+        onSubmit = {({ firstName, lastName }) => {
           console.log(`firstName: ${firstName}`);
           console.log(`lastName: ${lastName}`);
+          console.log(`status: ${this.state.status}`)
         }}
 
         validationSchema={NewBandForm.SignupSchema}
 
-        render={({
+        render = {({
           handleSubmit,
+          isSubmitting,
           errors,
-          touched
+          touched,
+          status,
+          isValid
         }) => (
           <View>
             <Field
-              component={FKTextInput}
-              name="firstName"
+              component = {FKTextInput}
+              name = "firstName"
+              disabled = {isSubmitting}
             />
 
             <Field
-              component={FKTextInput}
-              name="lastName"
+              component = {FKTextInput}
+              name = "lastName"
+              disabled = {isSubmitting}
             />
 
+            {this.state.status.succeeded &&
+              <Text style={styles.rootSucceeded}>SUCCEEDED</Text>
+            }
+            {this.state.status.failed &&
+              <Text style={styles.rootFailed}>FAILED</Text>
+            }
             <Button
               title = "Submit Form"
               onPress = {handleSubmit}
-              disabled = {!errors}
+              disabled={!isValid || isSubmitting}
             />
           </View>
         )}
