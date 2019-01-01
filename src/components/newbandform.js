@@ -5,7 +5,6 @@ import * as Yup from 'yup';
 
 import FKTextInput from './fktextinput';
 
-
 export class NewBandForm extends Component {
 
   constructor(props) {
@@ -14,6 +13,7 @@ export class NewBandForm extends Component {
       status: {}
     }
   }
+
   static SignupSchema = Yup.object().shape({
     firstName: Yup.string()
       .min(2, 'Too Short!')
