@@ -38,6 +38,11 @@ export class NewBandForm extends Component {
           console.log(`firstName: ${firstName}`);
           console.log(`lastName: ${lastName}`);
           console.log(`status: ${this.state.status}`)
+          const band = {
+            name: firstName,
+            genre: lastName
+          }
+          this.props.postBand(band);
         }}
 
         validationSchema={NewBandForm.SignupSchema}
