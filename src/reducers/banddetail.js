@@ -3,13 +3,13 @@ export const GET_BANDDETAIL_SUCCESS = 'bandzown.herokuapp.com/banddetail/LOAD_SU
 export const GET_BANDDETAIL_FAIL = 'bandzown.herokuapp.com/banddetail/LOAD_FAIL';
 
 // export default function reducer(state = { repos: {movies: []} }, action) {
-export default function bandDetailReducer(state = { bandDetail: {} }, action) {
+export default function bandDetailReducer(state = { detail: {} }, action) {
   console.log("action type: %s", action.type);
   switch (action.type) {
     case GET_BANDDETAIL:
       return { ...state, loading: true };
     case GET_BANDDETAIL_SUCCESS:
-      return { ...state, loading: false, bands: action.payload.data };
+      return { ...state, loading: false, detail: action.payload.data };
     case GET_BANDDETAIL_FAIL:
       return {
         ...state,
@@ -22,11 +22,12 @@ export default function bandDetailReducer(state = { bandDetail: {} }, action) {
 }
 
 export function getBandDetail(id) {
+  const url = '/bands/' + id;
   return {
     type: GET_BANDDETAIL,
     payload: {
       request: {
-        url: `/bands/{id}`
+        url: url
       }
     }
   };

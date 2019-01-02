@@ -1,25 +1,46 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
 
 import { listBands } from '../reducers/bands';
 
 export class BandsList extends Component {
+
   componentDidMount() {
     this.props.listBands();
   }
-  renderItem = ({ item }) => (
-    <View style={styles.item}>
+
+  touchCallback = () => {
+     // this.props.navigation.navigate('BandDetails');
+   }
+
+  renderItem({ item }) {
+    return (
+    <View style = {styles.item}>
       <Text>{item.name}</Text>
+      <TouchableHighlight
+        onPress={() => this.props.navigation.navigate(
+          'BandDetails',
+          {
+            _id: item._id,
+          }
+        )}
+        underlayColor="white"
+        >
+        <Text>&gt;</Text>
+      </TouchableHighlight>
     </View>
-  );
+    )
+  }
+
   render() {
     return (
-      <View styles = {styles.container}>
+      <View style = {styles.container}>
         <FlatList
-          styles={styles.flatList}
-          data={this.props.bands}
-          renderItem={this.renderItem}
+          styles = {styles.flatList}
+          data = {this.props.bands}
+          renderItem = {this.renderItem.bind(this)}
         />
       </View>
     );
@@ -38,7 +59,9 @@ const styles = StyleSheet.create({
   item: {
     padding: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc'
+    borderBottomColor: '#ccc',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   }
 });
 
@@ -65,4 +88,4 @@ const mapDispatchToProps = {
   listBands
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(BandsList);
+export default connect(mapStateToProps, mapDispatchToProps)((withNavigation(BandsList)));

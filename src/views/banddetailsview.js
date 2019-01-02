@@ -7,6 +7,7 @@ import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
 import bandDetailReducer from '../reducers/banddetail';
+import BandDetail from '../components/banddetail';
 
 const client = axios.create({
   baseURL: 'https://bandzown.herokuapp.com',
@@ -23,7 +24,6 @@ export class BandDetailsView extends Component {
       };
     };
 
-
   render() {
     return (
       <SafeAreaView style = {styles.safeContent}>
@@ -33,7 +33,7 @@ export class BandDetailsView extends Component {
         />
         <Provider store={store}>
           <View style={styles.container}>
-            <BandsList />
+            <BandDetail />
           </View>
         </Provider>
       </SafeAreaView>
