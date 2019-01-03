@@ -21,7 +21,7 @@ export default function bandsReducer(state = { bands: [] }, action) {
   }
 }
 
-export function listBands(user) {
+export function postBand(band) {
   return {
     type: POST_BAND,
     payload: {

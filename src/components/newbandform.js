@@ -3,7 +3,8 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
-import FKTextInput from './fktextinput';
+import FKTextInput from '../components/fktextinput';
+import styles from '../styles/styles';
 
 export class NewBandForm extends Component {
 
@@ -14,12 +15,12 @@ export class NewBandForm extends Component {
     }
   }
 
-  static SignupSchema = Yup.object().shape({
-    firstName: Yup.string()
+  static BandSchema = Yup.object().shape({
+    name: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
       .required('Required'),
-    lastName: Yup.string()
+    genre: Yup.string()
       .min(2, 'Too Short!')
       .max(50, 'Too Long!')
       .required('Required'),
@@ -30,22 +31,22 @@ export class NewBandForm extends Component {
 
       <Formik
         initialValues = {{
-                firstName: '',
-                lastName: '',
+                name: '',
+                genre: '',
               }}
 
-        onSubmit = {({ firstName, lastName }) => {
-          console.log(`firstName: ${firstName}`);
-          console.log(`lastName: ${lastName}`);
+        onSubmit = {({ name, genre }) => {
+          console.log(`name: ${name}`);
+          console.log(`genre: ${genre}`);
           console.log(`status: ${this.state.status}`)
           const band = {
-            name: firstName,
-            genre: lastName
+            name: name,
+            genre: genre
           }
           this.props.postBand(band);
         }}
 
-        validationSchema={NewBandForm.SignupSchema}
+        validationSchema={NewBandForm.BandSchema}
 
         render = {({
           handleSubmit,
@@ -56,15 +57,25 @@ export class NewBandForm extends Component {
           isValid
         }) => (
           <View>
+            <Text
+              style = { styles.formLabel }
+            >
+              Name:
+            </Text>
             <Field
               component = {FKTextInput}
-              name = "firstName"
+              name = "name"
               disabled = {isSubmitting}
             />
 
+            <Text
+              style = { styles.formLabel }
+            >
+              Genre:
+            </Text>
             <Field
               component = {FKTextInput}
-              name = "lastName"
+              name = "genre"
               disabled = {isSubmitting}
             />
 

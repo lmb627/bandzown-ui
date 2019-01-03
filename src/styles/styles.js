@@ -19,6 +19,11 @@ const styles = StyleSheet.create({
     color: 'green',
     textAlign: 'center',
   },
+  formLabel: {
+    paddingTop: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+  }
 });
 
 export default styles;
