@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
+import { connect } from 'react-redux';
+import { withNavigation } from 'react-navigation';
+
 import { Formik, Field } from 'formik';
 import * as Yup from 'yup';
 
 import FKTextInput from '../components/fktextinput';
 import styles from '../styles/styles';
+
+import { postBand } from '../reducers/newband';
 
 export class NewBandForm extends Component {
 
@@ -46,7 +51,7 @@ export class NewBandForm extends Component {
           this.props.postBand(band);
         }}
 
-        validationSchema={NewBandForm.BandSchema}
+        validationSchema={ NewBandForm.BandSchema }
 
         render = {({
           handleSubmit,
@@ -63,9 +68,9 @@ export class NewBandForm extends Component {
               Name:
             </Text>
             <Field
-              component = {FKTextInput}
+              component = { FKTextInput }
               name = "name"
-              disabled = {isSubmitting}
+              disabled = { isSubmitting }
             />
 
             <Text
@@ -74,9 +79,9 @@ export class NewBandForm extends Component {
               Genre:
             </Text>
             <Field
-              component = {FKTextInput}
+              component = { FKTextInput }
               name = "genre"
-              disabled = {isSubmitting}
+              disabled = { isSubmitting }
             />
 
             {this.state.status.succeeded &&
@@ -97,3 +102,22 @@ export class NewBandForm extends Component {
     );
   }
 }
+
+const mapStateToProps = state => {
+  let bandDetail = state.detail
+  if(bandDetail) {
+    return {
+      detail: bandDetail
+    };
+  } else {
+    console.log("no band details");
+    return {};
+  }
+
+};
+
+const mapDispatchToProps = {
+  postBand
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(NewBandForm));
