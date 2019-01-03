@@ -7,13 +7,21 @@ export default function bandsReducer(state = { bands: [] }, action) {
   console.log("action type: %s", action.type);
   switch (action.type) {
     case GET_BANDS:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        loading: true,
+        refreshing: true };
     case GET_BANDS_SUCCESS:
-      return { ...state, loading: false, bands: action.payload.data };
+      return {
+        ...state,
+        loading: false,
+        refreshing: false,
+        bands: action.payload.data };
     case GET_BANDS_FAIL:
       return {
         ...state,
         loading: false,
+        refreshing: false, 
         error: 'Error while fetching bands'
       };
     default:

@@ -1,5 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableHighlight } from 'react-native';
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableHighlight,
+  SearchBar } from 'react-native';
+
+
 import { connect } from 'react-redux';
 import { withNavigation } from 'react-navigation';
 
@@ -7,30 +15,54 @@ import { listBands } from '../reducers/bands';
 
 export class BandsList extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      refreshing: false,
+      loading: false
+    }
+  }
+
   componentDidMount() {
     this.props.listBands();
   }
 
-  touchCallback = () => {
-     // this.props.navigation.navigate('BandDetails');
+  refreshCallback() {
+    this.props.listBands();
+  }
+
+  handleRefresh = () => {
+    this.setState(
+      {
+          refreshing: true
+      },
+      this.refreshCallback
+    );
+  };
+
+  renderHeader() {
+     return (
+       <SearchBar placeholder="Type Here..." lightTheme round />
+     )
    }
 
   renderItem({ item }) {
     return (
-    <View style = {styles.item}>
-      <Text>{item.name}</Text>
-      <TouchableHighlight
-        onPress={() => this.props.navigation.navigate(
-          'BandDetails',
-          {
-            _id: item._id,
-          }
-        )}
-        underlayColor="white"
-        >
-        <Text>&gt;</Text>
-      </TouchableHighlight>
-    </View>
+      <View style = {styles.item}>
+        <Text>{item.name}</Text>
+        <TouchableHighlight
+          onPress={() => this.props.navigation.navigate(
+            'BandDetails',
+            {
+              _id: item._id,
+            }
+          )}
+          underlayColor="white"
+          >
+          <Text>&gt;</Text>
+        </TouchableHighlight>
+      </View>
     )
   }
 
@@ -41,6 +73,8 @@ export class BandsList extends Component {
           styles = {styles.flatList}
           data = {this.props.bands}
           renderItem = {this.renderItem.bind(this)}
+          refreshing={this.state.loading}
+          onRefresh={this.handleRefresh}
         />
       </View>
     );
@@ -66,13 +100,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
+
   let bands = state.bands
   if(bands) {
-
-    console.log("there are %d bands", bands.length)
-    bands.forEach(function(x){
-      console.log("id: %s; name: %s", x._id, x.name);
-    });
     let storedBands = bands.map(band => ({ key: band._id, ...band }));
     return {
       bands: storedBands
