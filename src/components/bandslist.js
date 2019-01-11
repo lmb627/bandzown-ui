@@ -24,8 +24,18 @@ export class BandsList extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.loading != nextProps.loading)
+    console.log("nextProps", nextProps);
+      this.setState(
+        {
+          refreshing: nextProps.loading
+        }
+      )
+  }
+
   componentDidMount() {
-    this.props.listBands();
+    this.handleRefresh();
   }
 
   refreshCallback() {
@@ -33,6 +43,7 @@ export class BandsList extends Component {
   }
 
   handleRefresh = () => {
+    console.log("refresh");
     this.setState(
       {
           refreshing: true
@@ -73,7 +84,7 @@ export class BandsList extends Component {
           styles = {styles.flatList}
           data = {this.props.bands}
           renderItem = {this.renderItem.bind(this)}
-          refreshing={this.state.loading}
+          refreshing={this.state.refreshing}
           onRefresh={this.handleRefresh}
         />
       </View>
@@ -105,7 +116,8 @@ const mapStateToProps = state => {
   if(bands) {
     let storedBands = bands.map(band => ({ key: band._id, ...band }));
     return {
-      bands: storedBands
+      bands: storedBands,
+      loading: state.loading
     };
   } else {
     console.log("no bands");
