@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { StyleSheet, SafeAreaView, StatusBar, View, Text, Button } from "react-native";
+import React, { Component } from 'react';
+import { StyleSheet, SafeAreaView, StatusBar, View, Text, Button } from 'react-native';
 
 export class HomeView extends Component {
   static navigationOptions = {
@@ -33,9 +33,9 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginBottom: 100,
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center"
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   viewTitle: {
     fontSize: 30

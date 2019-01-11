@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, Text, View, Button } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 
 import { createStore, applyMiddleware } from 'redux';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
@@ -18,9 +18,9 @@ const store = createStore(bandDetailReducer, applyMiddleware(axiosMiddleware(cli
 
 export class BandDetailsView extends Component {
 
-  static navigationOptions = ({ navigation }) => {
+  static navigationOptions = () => {
       return {
-        headerTitle: "Band Detail",
+        headerTitle: 'Band Detail',
       };
     };
 
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     backgroundColor: '#fff'
   }
 });

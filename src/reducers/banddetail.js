@@ -6,7 +6,7 @@ export const GET_BANDDETAIL_FAIL = 'bandzown.herokuapp.com/banddetail/LOAD_FAIL'
 //   return state;
 // }
 export default function bandDetailReducer(state = { detail: {} }, action) {
-  console.log("action type: %s", action.type);
+  console.log('action type: %s', action.type);
   switch (action.type) {
     case GET_BANDDETAIL:
       return { ...state, loading: true };
@@ -24,7 +24,7 @@ export default function bandDetailReducer(state = { detail: {} }, action) {
 }
 
 export function getBandDetail(id) {
-  url = '/bands/' + id;
+  const url = '/bands/' + id;
   return {
     type: GET_BANDDETAIL,
     payload: {

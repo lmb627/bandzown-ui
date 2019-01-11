@@ -1,11 +1,9 @@
-import React from "react";
-import { View, Text } from "react-native";
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 
-import { HomeView } from "./views/homeview";
-import { BandsView } from "./views/bandsview";
-import { NewBandView } from "./views/newbandview";
-import { BandDetailsView } from "./views/banddetailsview";
+import { HomeView } from './views/homeview';
+import { BandsView } from './views/bandsview';
+import { NewBandView } from './views/newbandview';
+import { BandDetailsView } from './views/banddetailsview';
 
 const AppNavigator = createStackNavigator(
   {

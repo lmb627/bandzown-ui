@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, View, Text } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, View } from 'react-native';
 
 import { createStore, applyMiddleware } from 'redux';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
@@ -16,12 +16,6 @@ const client = axios.create({
 });
 
 const store = createStore(newBandReducer, applyMiddleware(axiosMiddleware(client)));
-
-const imaginaryBand = {
-  name: "no_name",
-  genre: "no_genre",
-  number_of_members: 0
-}
 
 export class NewBandView extends Component {
   static navigationOptions = {
@@ -48,8 +42,8 @@ export class NewBandView extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center"
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 });

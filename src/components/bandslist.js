@@ -21,21 +21,21 @@ export class BandsList extends Component {
     this.state = {
       refreshing: false,
       loading: false
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if(this.props.loading != nextProps.loading)
-    console.log("nextProps", nextProps);
-      this.setState(
-        {
-          refreshing: nextProps.loading
-        }
-      )
+    };
   }
 
   componentDidMount() {
     this.handleRefresh();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.loading !== nextProps.loading) {
+      this.setState(
+        {
+          refreshing: nextProps.loading
+        }
+      );
+    }
   }
 
   refreshCallback() {
@@ -43,7 +43,6 @@ export class BandsList extends Component {
   }
 
   handleRefresh = () => {
-    console.log("refresh");
     this.setState(
       {
           refreshing: true
@@ -55,7 +54,7 @@ export class BandsList extends Component {
   renderHeader() {
      return (
        <SearchBar placeholder="Type Here..." lightTheme round />
-     )
+     );
    }
 
   renderItem({ item }) {
@@ -70,11 +69,11 @@ export class BandsList extends Component {
             }
           )}
           underlayColor="white"
-          >
-          <Text>&gt;</Text>
+        >
+        <Text>&gt;</Text>
         </TouchableHighlight>
       </View>
-    )
+    );
   }
 
   render() {
@@ -95,11 +94,11 @@ export class BandsList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "stretch"
+    alignItems: 'stretch'
   },
   flatList: {
     flex: 1,
-    alignItems: "stretch"
+    alignItems: 'stretch'
   },
   item: {
     padding: 16,
@@ -111,19 +110,17 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = state => {
-
-  let bands = state.bands
-  if(bands) {
-    let storedBands = bands.map(band => ({ key: band._id, ...band }));
+  const bands = state.bands;
+  if (bands) {
+    const storedBands = bands.map(band => ({ key: band._id, ...band }));
     return {
       bands: storedBands,
       loading: state.loading
     };
   } else {
-    console.log("no bands");
+    console.log('no bands');
     return [];
   }
-
 };
 
 const mapDispatchToProps = {

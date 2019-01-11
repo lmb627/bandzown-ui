@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, Text, View, Button } from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet, View, Button } from 'react-native';
 
 import { createStore, applyMiddleware } from 'redux';
-import { Provider, connect } from 'react-redux';
+import { Provider } from 'react-redux';
 import axios from 'axios';
 import axiosMiddleware from 'redux-axios-middleware';
 
@@ -20,7 +20,7 @@ export class BandsView extends Component {
 
   static navigationOptions = ({ navigation }) => {
       return {
-        headerTitle: "Bands",
+        headerTitle: 'Bands',
         headerRight: (
           <Button
             onPress={() => navigation.navigate('NewBand')}
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: "stretch",
+    alignItems: 'stretch',
     backgroundColor: '#fff'
   }
 });

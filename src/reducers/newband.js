@@ -7,7 +7,7 @@ export const POST_BAND_FAIL = 'bandzown.herokuapp.com/bands/POST_FAIL';
 // }
 
 export default function newBandReducer(state = { band: {} }, action) {
-  console.log("action type: %s", action.type);
+  console.log('action type: %s', action.type);
   switch (action.type) {
     case POST_BAND:
       return { ...state, loading: true };
@@ -29,7 +29,7 @@ export function postBand(band) {
     type: POST_BAND,
     payload: {
       request: {
-        url: `/bands`,
+        url: '/bands',
         method: 'post',
         data: band
       }
