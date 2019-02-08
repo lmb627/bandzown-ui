@@ -9,7 +9,7 @@ export class BandDetail extends Component {
 
   componentDidMount() {
     const _id = this.props.navigation.getParam('_id', 'no_id');
-    console.log("mounting band details: %s", _id)
+    console.log('mounting band details: %s', _id);
     this.props.getBandDetail(_id);
   }
 
@@ -39,41 +39,34 @@ export class BandDetail extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 0,
+    padding: 10,
   },
   row: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "baseline",
+    flexDirection: 'row',
+    alignItems: 'baseline',
     padding: 16,
-    height: 40
   },
   label: {
     flex: 1,
-    padding: 10,
     fontSize: 20,
-    height: 30,
   },
   item: {
-    flex: 2,
-    padding: 10,
+    flex: 3,
     fontSize: 20,
     fontWeight: 'bold',
-    height: 30,
   }
 });
 
 const mapStateToProps = state => {
-  let bandDetail = state.detail
-  if(bandDetail) {
+  const bandDetail = state.detail;
+  if (bandDetail) {
     return {
       detail: bandDetail
     };
   } else {
-    console.log("no band details");
+    console.log('no band details');
     return {};
   }
-
 };
 
 const mapDispatchToProps = {
